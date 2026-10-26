@@ -2,8 +2,8 @@
 
 Support tickets and interview notes, October.
 
-- "I just wanted to try it myself first. It asked me for three colleagues before I'd even seen what it does." (trial user, design agency)
-- "I didn't see the skip link until my second try." (interview, product manager)
-- "Why do I need to pick roles for people who haven't joined yet?" (support ticket)
-- "My teammates are on a different domain, so I couldn't invite anyone and got stuck." (support ticket)
-- "The invite screen felt like a form for IT, not like the rest of the app." (interview, engineering lead)
+- "They all look the same. I just tapped the first one to get past it." (trial user, design agency)
+- "I didn't know what 'Workload' would actually track." (interview, product manager)
+- "Pick up to three of what? I wasn't sure what choosing these would change." (support ticket)
+- "I'd have liked to see what a check-in about Energy looks like before choosing it." (interview, engineering lead)
+- "It felt like a quiz with no right answer." (interview, team lead)
