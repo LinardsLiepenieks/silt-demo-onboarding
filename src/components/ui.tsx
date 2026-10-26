@@ -3,12 +3,13 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowLeft01Icon } from '@hugeicons/core-free-icons';
 import { STEPS, type Action, type Step } from '../onboarding';
 
+// A light wash at the top of each step, so the accent stays the strongest colour.
 const TINTS: Record<Step, string> = {
-  welcome: 'from-lavender/45 via-page to-page',
-  name: 'from-butter/35 via-page to-page',
-  focus: 'from-mint/35 via-page to-page',
-  invite: 'from-ivory via-page to-page',
-  home: 'from-page to-page',
+  welcome: 'from-lavender/25',
+  name: 'from-butter/20',
+  focus: 'from-mint/20',
+  invite: 'from-ivory',
+  home: 'from-page',
 };
 
 /** One onboarding screen: its tint, back control, content and footer. */
@@ -26,26 +27,30 @@ export function Screen({
   const index = STEPS.indexOf(step);
   return (
     <section
-      className={`flex min-h-dvh w-full flex-col bg-gradient-to-b px-6 pt-5 pb-8 ${TINTS[step]}`}
+      className={`flex min-h-dvh w-full justify-center bg-gradient-to-b via-page via-45% to-page ${TINTS[step]}`}
     >
-      <header className="flex h-10 items-center justify-between">
-        {dispatch && index > 0 ? (
-          <button
-            type="button"
-            aria-label="Back"
-            onClick={() => dispatch({ type: 'back' })}
-            className="press flex size-10 items-center justify-center rounded-full text-muted hover:bg-raised hover:text-emphasis"
-          >
-            <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
-          </button>
-        ) : (
+      <div className="flex w-full max-w-[440px] flex-col px-6 pt-5 pb-8">
+        <header className="flex h-10 items-center justify-between">
+          {dispatch && index > 0 ? (
+            <button
+              type="button"
+              aria-label="Back"
+              onClick={() => dispatch({ type: 'back' })}
+              className="press flex size-10 items-center justify-center rounded-full text-muted hover:bg-raised hover:text-emphasis"
+            >
+              <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
+            </button>
+          ) : (
+            <span className="size-10" />
+          )}
+          <Progress index={index} />
           <span className="size-10" />
-        )}
-        <Progress index={index} />
-        <span className="size-10" />
-      </header>
-      <div className="flex flex-1 flex-col">{children}</div>
-      {footer ? <footer className="mt-6 flex flex-col gap-3">{footer}</footer> : null}
+        </header>
+        <div className="flex flex-1 flex-col">{children}</div>
+        {footer ? (
+          <footer className="mt-6 flex flex-col gap-3">{footer}</footer>
+        ) : null}
+      </div>
     </section>
   );
 }
@@ -95,13 +100,7 @@ export function QuietButton({
   );
 }
 
-export function Heading({
-  title,
-  hint,
-}: {
-  title: string;
-  hint?: string;
-}) {
+export function Heading({ title, hint }: { title: string; hint?: string }) {
   return (
     <div className="mt-10 flex flex-col gap-2">
       <h1 className="text-[28px] leading-[34px] font-medium tracking-[-0.01em] text-ink">

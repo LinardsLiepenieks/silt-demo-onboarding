@@ -44,7 +44,9 @@ export function InviteTeam({
           <InviteRow
             key={index}
             invite={invite}
-            onChange={(next) => dispatch({ type: 'invite', index, invite: next })}
+            onChange={(next) =>
+              dispatch({ type: 'invite', index, invite: next })
+            }
           />
         ))}
       </div>

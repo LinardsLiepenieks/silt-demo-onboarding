@@ -60,10 +60,8 @@ export function App() {
   }, []);
 
   return (
-    <main className="flex min-h-dvh justify-center">
-      <div className="flex w-full max-w-[430px] [view-transition-name:screen]">
-        <Current state={state} dispatch={dispatch} />
-      </div>
+    <main className="flex min-h-dvh [view-transition-name:screen]">
+      <Current state={state} dispatch={dispatch} />
     </main>
   );
 }

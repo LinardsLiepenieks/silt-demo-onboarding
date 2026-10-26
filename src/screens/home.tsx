@@ -16,7 +16,9 @@ function greeting(hour = new Date().getHours()) {
 
 export function Home({ state }: { state: State }) {
   const invited = state.invites.filter((invite) => validEmail(invite.email));
-  const focus = state.focus.length ? state.focus : (['Focus', 'Energy'] as const);
+  const focus = state.focus.length
+    ? state.focus
+    : (['Focus', 'Energy'] as const);
   return (
     <Screen step="home">
       <div className="mt-6 flex items-end justify-between">
@@ -60,7 +62,11 @@ export function Home({ state }: { state: State }) {
             key={item}
             className="press flex h-9 items-center gap-2 rounded-full bg-raised px-3.5 text-sm text-emphasis shadow-[0_1px_2px_rgb(0_0_0/4%)]"
           >
-            <HugeiconsIcon icon={FOCUS_ICONS[item]} size={16} className="text-muted" />
+            <HugeiconsIcon
+              icon={FOCUS_ICONS[item]}
+              size={16}
+              className="text-muted"
+            />
             {item}
           </span>
         ))}
