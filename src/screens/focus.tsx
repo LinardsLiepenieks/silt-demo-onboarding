@@ -52,11 +52,11 @@ export function FocusPicker({
           // A native checkbox, so the chip still toggles where no script runs.
           <label
             key={focus}
-            className="chip relative flex h-24 cursor-pointer flex-col justify-between rounded-card bg-raised/70 p-4 select-none"
+            className="chip relative flex h-24 cursor-pointer flex-col justify-between rounded-card bg-raised p-4 select-none"
           >
             <input
               type="checkbox"
-              className="sr-only"
+              className="chip-input sr-only"
               defaultChecked={state.focus.includes(focus)}
               onClick={(event) => {
                 const full =
@@ -66,6 +66,7 @@ export function FocusPicker({
                 else dispatch({ type: 'toggleFocus', focus });
               }}
             />
+            <span className="chip-ring pointer-events-none absolute inset-0 rounded-card" />
             <HugeiconsIcon
               icon={FOCUS_ICONS[focus]}
               size={22}
