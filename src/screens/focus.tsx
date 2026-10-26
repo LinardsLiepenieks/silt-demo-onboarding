@@ -6,6 +6,7 @@ import {
   FlashIcon,
   SmileIcon,
   Target02Icon,
+  Tick02Icon,
 } from '@hugeicons/core-free-icons';
 import {
   FOCUS_MAX,
@@ -32,16 +33,12 @@ export function FocusPicker({
   state: State;
   dispatch: (action: Action) => void;
 }) {
-  const full = state.focus.length >= FOCUS_MAX;
   return (
     <Screen
       step="focus"
       dispatch={dispatch}
       footer={
-        <PrimaryButton
-          disabled={!state.focus.length}
-          onClick={() => dispatch({ type: 'next' })}
-        >
+        <PrimaryButton onClick={() => dispatch({ type: 'next' })}>
           Continue
         </PrimaryButton>
       }
@@ -51,30 +48,35 @@ export function FocusPicker({
         hint={`Pick up to ${FOCUS_MAX}. You can change these later.`}
       />
       <div className="mt-8 grid grid-cols-2 gap-3">
-        {FOCUS_OPTIONS.map((focus) => {
-          const on = state.focus.includes(focus);
-          return (
-            <button
-              key={focus}
-              type="button"
-              aria-pressed={on}
-              disabled={!on && full}
-              onClick={() => dispatch({ type: 'toggleFocus', focus })}
-              className={`flex h-24 flex-col justify-between rounded-card p-4 text-left transition-[background-color,box-shadow,opacity] disabled:opacity-40 ${
-                on
-                  ? 'bg-raised shadow-[inset_0_0_0_2px_var(--color-accent),0_1px_2px_rgb(0_0_0/4%)]'
-                  : 'bg-raised/70 shadow-[0_1px_2px_rgb(0_0_0/4%)] hover:bg-raised'
-              }`}
-            >
-              <HugeiconsIcon
-                icon={FOCUS_ICONS[focus]}
-                size={22}
-                className={on ? 'text-accent' : 'text-muted'}
-              />
-              <span className="text-[15px] font-medium text-ink">{focus}</span>
-            </button>
-          );
-        })}
+        {FOCUS_OPTIONS.map((focus) => (
+          // A native checkbox, so the chip still toggles where no script runs.
+          <label
+            key={focus}
+            className="chip relative flex h-24 cursor-pointer flex-col justify-between rounded-card bg-raised/70 p-4 select-none"
+          >
+            <input
+              type="checkbox"
+              className="sr-only"
+              defaultChecked={state.focus.includes(focus)}
+              onClick={(event) => {
+                const full =
+                  state.focus.length >= FOCUS_MAX &&
+                  !state.focus.includes(focus);
+                if (full) event.preventDefault();
+                else dispatch({ type: 'toggleFocus', focus });
+              }}
+            />
+            <HugeiconsIcon
+              icon={FOCUS_ICONS[focus]}
+              size={22}
+              className="chip-icon origin-left text-muted"
+            />
+            <span className="chip-check absolute top-4 right-4 flex size-5 items-center justify-center rounded-full bg-accent text-white">
+              <HugeiconsIcon icon={Tick02Icon} size={12} strokeWidth={2.5} />
+            </span>
+            <span className="text-[15px] font-medium text-ink">{focus}</span>
+          </label>
+        ))}
       </div>
     </Screen>
   );

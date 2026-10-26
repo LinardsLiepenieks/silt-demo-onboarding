@@ -22,16 +22,13 @@ export function InviteTeam({
       dispatch={dispatch}
       footer={
         <>
-          <PrimaryButton
-            disabled={valid.length < INVITES_REQUIRED}
-            onClick={() => dispatch({ type: 'next' })}
-          >
+          <PrimaryButton onClick={() => dispatch({ type: 'next' })}>
             Send invites
           </PrimaryButton>
           <button
             type="button"
             onClick={() => dispatch({ type: 'next' })}
-            className="self-center text-xs text-faint"
+            className="press self-center text-xs text-faint"
           >
             Skip for now
           </button>
@@ -67,7 +64,7 @@ function InviteRow({
   onChange: (invite: Partial<Invite>) => void;
 }) {
   return (
-    <div className="flex h-12 items-center gap-2 rounded-xl bg-raised pr-2 pl-4 shadow-[0_1px_2px_rgb(0_0_0/4%)]">
+    <div className="flex h-12 items-center gap-2 rounded-xl bg-raised pr-2 pl-4 shadow-[0_1px_2px_rgb(0_0_0/4%)] transition-shadow duration-200 focus-within:shadow-[inset_0_0_0_2px_var(--color-accent)]">
       <input
         type="email"
         value={invite.email}

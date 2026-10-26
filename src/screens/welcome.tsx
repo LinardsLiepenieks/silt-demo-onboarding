@@ -10,7 +10,9 @@ export function Welcome({ dispatch }: { dispatch: (action: Action) => void }) {
           <PrimaryButton onClick={() => dispatch({ type: 'next' })}>
             Get started
           </PrimaryButton>
-          <QuietButton>I already have an account</QuietButton>
+          <QuietButton onClick={() => dispatch({ type: 'go', step: 'home' })}>
+            I already have an account
+          </QuietButton>
         </>
       }
     >

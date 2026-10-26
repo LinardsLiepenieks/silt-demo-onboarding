@@ -34,7 +34,7 @@ export function Screen({
             type="button"
             aria-label="Back"
             onClick={() => dispatch({ type: 'back' })}
-            className="flex size-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-raised hover:text-emphasis"
+            className="press flex size-10 items-center justify-center rounded-full text-muted hover:bg-raised hover:text-emphasis"
           >
             <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
           </button>
@@ -44,7 +44,7 @@ export function Screen({
         <Progress index={index} />
         <span className="size-10" />
       </header>
-      <div className="rise flex flex-1 flex-col">{children}</div>
+      <div className="flex flex-1 flex-col">{children}</div>
       {footer ? <footer className="mt-6 flex flex-col gap-3">{footer}</footer> : null}
     </section>
   );
@@ -73,7 +73,7 @@ export function PrimaryButton({
     <button
       type="button"
       {...props}
-      className="h-13 w-full rounded-full bg-accent text-[15px] font-medium text-white shadow-[inset_0_1px_1px_rgb(255_255_255/18%),0_6px_16px_-6px_rgb(0_167_244/55%)] transition-[opacity,transform] active:scale-[0.98] disabled:opacity-35 disabled:shadow-none"
+      className="press ripple h-13 w-full rounded-full bg-accent text-[15px] font-medium text-white shadow-[inset_0_1px_1px_rgb(255_255_255/18%),0_6px_16px_-6px_rgb(0_167_244/55%)]"
     >
       {children}
     </button>
@@ -88,7 +88,7 @@ export function QuietButton({
     <button
       type="button"
       {...props}
-      className="h-10 text-sm text-muted transition-colors hover:text-emphasis"
+      className="press h-10 text-sm text-muted transition-colors hover:text-emphasis"
     >
       {children}
     </button>

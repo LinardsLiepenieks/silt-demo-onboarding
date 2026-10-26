@@ -32,7 +32,7 @@ export function Home({ state }: { state: State }) {
         </span>
       </div>
 
-      <article className="mt-6 overflow-hidden rounded-card bg-raised p-5 shadow-[0_1px_2px_rgb(0_0_0/4%)]">
+      <article className="lift mt-6 overflow-hidden rounded-card bg-raised p-5 shadow-[0_1px_2px_rgb(0_0_0/4%)]">
         <div className="flex items-center gap-3">
           <img src="/flower-static.svg" alt="" className="size-12" />
           <div>
@@ -44,7 +44,7 @@ export function Home({ state }: { state: State }) {
         </div>
         <button
           type="button"
-          className="mt-5 flex h-12 w-full items-center justify-between rounded-full bg-accent pr-2 pl-5 text-[15px] font-medium text-white"
+          className="press ripple mt-5 flex h-12 w-full items-center justify-between rounded-full bg-accent pr-2 pl-5 text-[15px] font-medium text-white"
         >
           Start check-in
           <span className="flex size-8 items-center justify-center rounded-full bg-white/20">
@@ -58,7 +58,7 @@ export function Home({ state }: { state: State }) {
         {focus.map((item) => (
           <span
             key={item}
-            className="flex h-9 items-center gap-2 rounded-full bg-raised px-3.5 text-sm text-emphasis shadow-[0_1px_2px_rgb(0_0_0/4%)]"
+            className="press flex h-9 items-center gap-2 rounded-full bg-raised px-3.5 text-sm text-emphasis shadow-[0_1px_2px_rgb(0_0_0/4%)]"
           >
             <HugeiconsIcon icon={FOCUS_ICONS[item]} size={16} className="text-muted" />
             {item}
@@ -67,7 +67,7 @@ export function Home({ state }: { state: State }) {
       </div>
 
       <h3 className="mt-8 text-[13px] font-medium text-muted">Team</h3>
-      <article className="mt-3 rounded-card bg-raised p-5 shadow-[0_1px_2px_rgb(0_0_0/4%)]">
+      <article className="lift mt-3 rounded-card bg-raised p-5 shadow-[0_1px_2px_rgb(0_0_0/4%)]">
         {invited.length ? (
           <ul className="flex flex-col gap-3">
             {invited.map((invite) => (
