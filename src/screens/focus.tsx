@@ -26,6 +26,16 @@ export const FOCUS_ICONS: Record<Focus, typeof FlashIcon> = {
   Workload: Clock01Icon,
 };
 
+// The question each focus adds to the daily check-in.
+const FOCUS_QUESTIONS: Record<Focus, string> = {
+  Focus: 'Did you get time for deep work today?',
+  Energy: "How's your energy today?",
+  Blockers: 'Is anything slowing you down?',
+  Wins: 'What went well today?',
+  Mood: 'How are you feeling today?',
+  Workload: 'Is your workload manageable?',
+};
+
 export function FocusPicker({
   state,
   dispatch,
@@ -45,14 +55,14 @@ export function FocusPicker({
     >
       <Heading
         title={`What do you want to keep an eye on${state.name ? `, ${state.name}` : ''}?`}
-        hint={`Pick up to ${FOCUS_MAX}. You can change these later.`}
+        hint={`Your daily check-in asks about the ones you pick. Choose up to ${FOCUS_MAX}.`}
       />
-      <div className="mt-8 grid grid-cols-2 gap-3">
+      <div className="mt-6 flex flex-col gap-2">
         {FOCUS_OPTIONS.map((focus) => (
           // A native checkbox, so the chip still toggles where no script runs.
           <label
             key={focus}
-            className="chip relative flex h-24 cursor-pointer flex-col justify-between rounded-card bg-raised p-4 select-none"
+            className="chip relative flex h-[68px] cursor-pointer items-center gap-3 rounded-card bg-raised px-4 select-none"
           >
             <input
               type="checkbox"
@@ -70,12 +80,19 @@ export function FocusPicker({
             <HugeiconsIcon
               icon={FOCUS_ICONS[focus]}
               size={22}
-              className="chip-icon origin-left text-muted"
+              className="chip-icon shrink-0 text-muted"
             />
-            <span className="chip-check absolute top-4 right-4 flex size-5 items-center justify-center rounded-full bg-accent text-white">
+            <span className="flex min-w-0 flex-1 flex-col">
+              <span className="text-[15px] leading-5 font-medium text-ink">
+                {focus}
+              </span>
+              <span className="truncate text-[13px] leading-5 text-muted">
+                {FOCUS_QUESTIONS[focus]}
+              </span>
+            </span>
+            <span className="chip-check flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white">
               <HugeiconsIcon icon={Tick02Icon} size={12} strokeWidth={2.5} />
             </span>
-            <span className="text-[15px] font-medium text-ink">{focus}</span>
           </label>
         ))}
       </div>
